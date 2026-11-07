@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'F5_2201234567', // TODO: thay bằng MSSV của bạn
+      title: 'F5_231A290127',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0468D7)),
@@ -173,9 +173,17 @@ class _ProductListTabState extends State<ProductListTab> {
               child: const Icon(Icons.delete, color: Colors.white),
             ),
             onDismissed: (_) {
+              final viTri = index;
               setState(() => _ds.removeAt(index));
+              ScaffoldMessenger.of(context).clearSnackBars();
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Đã xóa ${sp.ten}')),
+                SnackBar(
+                  content: Text('Đã xóa ${sp.ten}'),
+                  action: SnackBarAction(
+                    label: 'Hoàn tác',
+                    onPressed: () => setState(() => _ds.insert(viTri, sp)),
+                  ),
+                ),
               );
             },
             child: Card(
